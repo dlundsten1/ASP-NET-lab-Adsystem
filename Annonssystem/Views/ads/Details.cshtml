@@ -1,0 +1,50 @@
+﻿@model Annonssystem.Models.tbl_ads
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_ads</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ads_category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ads_category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ads_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ads_content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ads_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ads_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_annonsorer.an_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_annonsorer.an_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ads_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

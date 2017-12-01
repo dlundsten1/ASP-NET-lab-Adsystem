@@ -1,0 +1,72 @@
+﻿@model Annonssystem.Models.tbl_annonsorer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_annonsorer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.an_corp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_corp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_srName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_srName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_adr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_adr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_poCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_poCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_city)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

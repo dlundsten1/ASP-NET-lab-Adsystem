@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="adsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ads">
+          <Key>
+            <PropertyRef Name="ads_ID" />
+          </Key>
+          <Property Name="ads_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ads_category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ads_content" Type="text" Nullable="false" />
+          <Property Name="ads_price" Type="int" Nullable="false" />
+          <Property Name="ads_annonsor" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_annonsorer">
+          <Key>
+            <PropertyRef Name="an_ID" />
+          </Key>
+          <Property Name="an_ID" Type="bigint" Nullable="false" />
+          <Property Name="an_corp" Type="bit" />
+          <Property Name="an_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="an_srName" Type="varchar" MaxLength="50" />
+          <Property Name="an_adr" Type="varchar" MaxLength="50" />
+          <Property Name="an_poCode" Type="int" />
+          <Property Name="an_city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tbl_ads__ads_ann__2B3F6F97">
+          <End Role="tbl_annonsorer" Type="Self.tbl_annonsorer" Multiplicity="0..1" />
+          <End Role="tbl_ads" Type="Self.tbl_ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_annonsorer">
+              <PropertyRef Name="an_ID" />
+            </Principal>
+            <Dependent Role="tbl_ads">
+              <PropertyRef Name="ads_annonsor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="adsModelStoreContainer">
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ads" EntityType="Self.tbl_ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_annonsorer" EntityType="Self.tbl_annonsorer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_ads__ads_ann__2B3F6F97" Association="Self.FK__tbl_ads__ads_ann__2B3F6F97">
+            <End Role="tbl_annonsorer" EntitySet="tbl_annonsorer" />
+            <End Role="tbl_ads" EntitySet="tbl_ads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="adsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ads">
+          <Key>
+            <PropertyRef Name="ads_ID" />
+          </Key>
+          <Property Name="ads_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ads_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ads_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ads_price" Type="Int32" Nullable="false" />
+          <Property Name="ads_annonsor" Type="Int64" />
+          <NavigationProperty Name="tbl_annonsorer" Relationship="Self.FK__tbl_ads__ads_ann__2B3F6F97" FromRole="tbl_ads" ToRole="tbl_annonsorer" />
+        </EntityType>
+        <EntityType Name="tbl_annonsorer">
+          <Key>
+            <PropertyRef Name="an_ID" />
+          </Key>
+          <Property Name="an_ID" Type="Int64" Nullable="false" />
+          <Property Name="an_corp" Type="Boolean" />
+          <Property Name="an_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="an_srName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="an_adr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="an_poCode" Type="Int32" />
+          <Property Name="an_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_ads" Relationship="Self.FK__tbl_ads__ads_ann__2B3F6F97" FromRole="tbl_annonsorer" ToRole="tbl_ads" />
+        </EntityType>
+        <Association Name="FK__tbl_ads__ads_ann__2B3F6F97">
+          <End Role="tbl_annonsorer" Type="Self.tbl_annonsorer" Multiplicity="0..1" />
+          <End Role="tbl_ads" Type="Self.tbl_ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_annonsorer">
+              <PropertyRef Name="an_ID" />
+            </Principal>
+            <Dependent Role="tbl_ads">
+              <PropertyRef Name="ads_annonsor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="adsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table" EntityType="Self.Table" />
+          <EntitySet Name="tbl_ads" EntityType="Self.tbl_ads" />
+          <EntitySet Name="tbl_annonsorer" EntityType="Self.tbl_annonsorer" />
+          <AssociationSet Name="FK__tbl_ads__ads_ann__2B3F6F97" Association="Self.FK__tbl_ads__ads_ann__2B3F6F97">
+            <End Role="tbl_annonsorer" EntitySet="tbl_annonsorer" />
+            <End Role="tbl_ads" EntitySet="tbl_ads" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="adsModelStoreContainer" CdmEntityContainer="adsEntities">
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="adsModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ads">
+            <EntityTypeMapping TypeName="adsModel.tbl_ads">
+              <MappingFragment StoreEntitySet="tbl_ads">
+                <ScalarProperty Name="ads_ID" ColumnName="ads_ID" />
+                <ScalarProperty Name="ads_category" ColumnName="ads_category" />
+                <ScalarProperty Name="ads_content" ColumnName="ads_content" />
+                <ScalarProperty Name="ads_price" ColumnName="ads_price" />
+                <ScalarProperty Name="ads_annonsor" ColumnName="ads_annonsor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_annonsorer">
+            <EntityTypeMapping TypeName="adsModel.tbl_annonsorer">
+              <MappingFragment StoreEntitySet="tbl_annonsorer">
+                <ScalarProperty Name="an_ID" ColumnName="an_ID" />
+                <ScalarProperty Name="an_corp" ColumnName="an_corp" />
+                <ScalarProperty Name="an_name" ColumnName="an_name" />
+                <ScalarProperty Name="an_srName" ColumnName="an_srName" />
+                <ScalarProperty Name="an_adr" ColumnName="an_adr" />
+                <ScalarProperty Name="an_poCode" ColumnName="an_poCode" />
+                <ScalarProperty Name="an_city" ColumnName="an_city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

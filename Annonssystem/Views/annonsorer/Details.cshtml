@@ -1,0 +1,66 @@
+﻿@model Annonssystem.Models.tbl_annonsorer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_annonsorer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.an_corp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_corp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_srName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_srName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_adr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_adr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_poCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_poCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.an_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.an_city)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.an_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
